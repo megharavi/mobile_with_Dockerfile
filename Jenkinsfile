@@ -4,17 +4,7 @@ node{
     }
         
     stage('Mvn test') {
-        steps{
-            withMaven(maven : 'maven_3_6_0'){
-            sh 'mvn test'
-        }
-        }
-    }
-    stage('Mvn DEPLOY') {
-        steps{
-            withMaven(maven : 'maven_3_6_0'){
-            sh 'mvn deploy'
-        }
-        }
+        def mvnHOME = tool name: 'maven_3_6_0', type: 'maven'
+        def mvnCMD = "${mvnHOME}/bin/mvn package"
     }
 }
