@@ -6,7 +6,7 @@ node{
         
     stage('Mvn test') {
         mvnHOME = tool name: 'maven', type: 'maven'
-        def MVN_HOME = $mvnHOME
+        withEnv(MVN_HOME = $mvnHOME)
         sh '"${MVN_HOME}/bin/mvn" -Dmaven.test.failure.ignore clean package'
     }
     stage('Results') {
