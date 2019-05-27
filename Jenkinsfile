@@ -6,7 +6,8 @@ node{
         
     stage('Mvn test') {
         mvnHOME = tool name: 'maven', type: 'maven'
-        sh '"${mvnHOME}/bin/mvn" -Dmaven.test.failure.ignore clean package'
+        def MVN_HOME = $mvnHOME
+        sh '"${MVN_HOME}/bin/mvn" -Dmaven.test.failure.ignore clean package'
     }
     stage('Results') {
       //junit '**/target/surefire-reports/TEST-*.xml'
