@@ -7,4 +7,8 @@ node{
         def mvnHOME = tool name: 'maven', type: 'maven'
         def mvnCMD = "${mvnHOME}/bin/mvn clean package"
     }
+    stage('Results') {
+      junit '**/target/surefire-reports/TEST-*.xml'
+      archiveArtifacts 'target/*.jar'
+   }
 }
